@@ -215,7 +215,7 @@ source venv/bin/activate && python3 manage.py runserver
 
 Open `http://127.0.0.1:8000` in your browser.
 
-> For manual setup on, Django learning, or troubleshooting see [SETUP.md](SETUP.md)
+> For manual setup on, Django learning, or troubleshooting see [SETUP.md](documentation/SETUP.md)
 
 ---
 
