@@ -6,7 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OfflineScribe</title>
-    <link rel="icon" type="image/png" href="{% static 'transcriber/favicon.svg' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'transcriber/favicon.svg' %}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'transcriber/css/style.css' %}">
 </head>
 
@@ -17,32 +22,44 @@
         <!-- Header -->
         <div class="header">
             <div class="logo">
-                <span class="logo-icon">🎙️</span>
+                <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
                 <span class="logo-text">OfflineScribe</span>
             </div>
-            <p class="tagline">Local audio & video transcription, no external APIs, no internet, no limits.</p>
+            <p class="tagline">Local audio & video transcription. No external APIs, no internet, total privacy.</p>
         </div>
 
         <!-- Upload Card -->
         <div class="card" id="upload-card">
             <div class="upload-zone" id="upload-zone">
                 <input type="file" id="file-input" accept=".mp4,.mp3,.wav,.mkv,.avi,.m4a">
-                <div class="upload-icon">📁</div>
-                <p class="upload-title">Drop your file here</p>
-                <p class="upload-sub">or <span class="upload-link"
-                        onclick="document.getElementById('file-input').click()">browse to upload</span></p>
-                <p class="upload-formats">Supported: MP4, MP3, WAV, MKV, AVI, M4A</p>
+                <div class="upload-icon-wrapper">
+                    <svg class="upload-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <p class="upload-title">Drop your audio or video here</p>
+                <p class="upload-sub">or <span class="upload-link" onclick="document.getElementById('file-input').click()">browse to upload</span></p>
+                <p class="upload-formats">Supported formats: MP4, MP3, WAV, MKV, AVI, M4A</p>
             </div>
 
             <!-- File info -->
             <div class="file-info" id="file-info" style="display:none;">
                 <div class="file-meta">
-                    <span class="file-icon">🎬</span>
+                    <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="23 7 16 12 23 17 23 7"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                    </svg>
                     <div class="file-details">
                         <p class="file-name" id="file-name-text">filename.mp4</p>
                         <p class="file-size" id="file-size-text">0 MB</p>
                     </div>
-                    <span class="file-remove" onclick="resetFile()">✕</span>
+                    <span class="file-remove" onclick="resetFile()" title="Remove file">✕</span>
                 </div>
 
                 <!-- Size based time estimate -->
@@ -62,7 +79,7 @@
                     </label>
                     <label class="model-option">
                         <input type="radio" name="model" value="small" checked>
-                        <div class="model-card selected">
+                        <div class="model-card">
                             <span class="model-name">Small</span>
                             <span class="model-desc">Balanced · Recommended</span>
                         </div>
@@ -116,9 +133,18 @@
                 <div class="transcript-header">
                     <span class="transcript-title">Transcript</span>
                     <div class="transcript-actions">
-                        <button class="action-btn" id="copy-btn">📋 Copy</button>
-                        <button class="action-btn" id="download-srt-btn">⬇️ Download SRT</button>
-                        <button class="action-btn" id="download-txt-btn">⬇️ Download TXT</button>
+                        <button class="action-btn" id="copy-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            <span>Copy</span>
+                        </button>
+                        <button class="action-btn" id="download-srt-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Download SRT</span>
+                        </button>
+                        <button class="action-btn" id="download-txt-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Download TXT</span>
+                        </button>
                     </div>
                 </div>
                 <div class="transcript-box" id="transcript-box"></div>

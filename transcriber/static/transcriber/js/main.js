@@ -291,13 +291,18 @@ function showError(message) {
 }
 
 // Copy
+// Copy
 copyBtn.addEventListener('click', () => {
     const text = currentSegments.map(s =>
         `[${formatTimestamp(s.start)} → ${formatTimestamp(s.end)}] ${s.text.trim()}`
     ).join('\n');
     navigator.clipboard.writeText(text).then(() => {
-        copyBtn.textContent = '✅ Copied!';
-        setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
+        const originalHTML = copyBtn.innerHTML;
+        copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="color: #10b981;">Copied!</span>
+        `;
+        setTimeout(() => { copyBtn.innerHTML = originalHTML; }, 2000);
     });
 });
 
