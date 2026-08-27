@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfflineScribe</title>
+    <link rel="stylesheet" href="{% static 'transcriber/css/style.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="logo-icon">🎙️</span>
+                <span class="logo-text">OfflineScribe</span>
+            </div>
+            <p class="tagline">Local audio & video transcription, no external APIs, no internet, no limits.</p>
+        </div>
+
+        <!-- Upload Card -->
+        <div class="card" id="upload-card">
+            <div class="upload-zone" id="upload-zone">
+                <input type="file" id="file-input" accept=".mp4,.mp3,.wav,.mkv,.avi,.m4a">
+                <div class="upload-icon">📁</div>
+                <p class="upload-title">Drop your file here</p>
+                <p class="upload-sub">or <span class="upload-link"
+                        onclick="document.getElementById('file-input').click()">browse to upload</span></p>
+                <p class="upload-formats">Supported: MP4, MP3, WAV, MKV, AVI, M4A</p>
+            </div>
+
+            <!-- File info -->
+            <div class="file-info" id="file-info" style="display:none;">
+                <div class="file-meta">
+                    <span class="file-icon">🎬</span>
+                    <div class="file-details">
+                        <p class="file-name" id="file-name-text">filename.mp4</p>
+                        <p class="file-size" id="file-size-text">0 MB</p>
+                    </div>
+                    <span class="file-remove" onclick="resetFile()">✕</span>
+                </div>
+
+                <!-- Size based time estimate -->
+                <div class="time-estimate" id="time-estimate"></div>
+            </div>
+
+            <!-- Model Selector -->
+            <div class="model-selector" id="model-selector" style="display:none;">
+                <p class="model-label">Transcription Quality</p>
+                <div class="model-options">
+                    <label class="model-option">
+                        <input type="radio" name="model" value="tiny">
+                        <div class="model-card">
+                            <span class="model-name">Tiny</span>
+                            <span class="model-desc">Fastest · Lower accuracy</span>
+                        </div>
+                    </label>
+                    <label class="model-option">
+                        <input type="radio" name="model" value="small" checked>
+                        <div class="model-card selected">
+                            <span class="model-name">Small</span>
+                            <span class="model-desc">Balanced · Recommended</span>
+                        </div>
+                    </label>
+                    <label class="model-option">
+                        <input type="radio" name="model" value="medium">
+                        <div class="model-card">
+                            <span class="model-name">Medium</span>
+                            <span class="model-desc">Best accuracy · Slower</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <button id="upload-btn" disabled>
+                <span id="btn-text">Transcribe</span>
+            </button>
+        </div>
+
+        <!-- Status + Transcript Card -->
+        <div class="card" id="result-card" style="display:none;">
+
+            <!-- Progress -->
+            <div class="progress-section" id="progress-section">
+                <div class="progress-steps">
+                    <div class="step" id="step-uploaded">
+                        <div class="step-dot"></div>
+                        <span>Uploaded</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" id="step-extracting">
+                        <div class="step-dot"></div>
+                        <span>Extracting Audio</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" id="step-transcribing">
+                        <div class="step-dot"></div>
+                        <span>Transcribing</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" id="step-done">
+                        <div class="step-dot"></div>
+                        <span>Done</span>
+                    </div>
+                </div>
+                <p class="status-message" id="status-message">Processing your file...</p>
+            </div>
+
+            <!-- Transcript -->
+            <div id="transcript-section" style="display:none;">
+                <div class="transcript-header">
+                    <span class="transcript-title">Transcript</span>
+                    <div class="transcript-actions">
+                        <button class="action-btn" id="copy-btn">📋 Copy</button>
+                        <button class="action-btn" id="download-srt-btn">⬇️ Download SRT</button>
+                        <button class="action-btn" id="download-txt-btn">⬇️ Download TXT</button>
+                    </div>
+                </div>
+                <div class="transcript-box" id="transcript-box"></div>
+                <button class="btn-new" onclick="resetAll()">Transcribe Another File</button>
+            </div>
+
+            <!-- Error -->
+            <div id="error-section" style="display:none;">
+                <div class="error-box" id="error-box"></div>
+                <button class="btn-new" onclick="resetAll()">Try Again</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'transcriber/js/main.js' %}"></script>
+</body>
+
+</html>
