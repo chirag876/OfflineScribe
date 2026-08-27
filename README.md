@@ -19,6 +19,79 @@
 </p>
 
 ---
+## Screenshots
+
+
+<p align="center">
+  <img src="documentation/images/Image%201.png" alt="OfflineScribe : Upload Interface" width="900"/>
+</p>
+
+<p align="center">
+  <strong>OfflineScribe : Upload Interface</strong><br/>
+  <sub>Upload audio or video files for local transcription.</sub>
+</p>
+
+<details>
+<summary><strong>Model Selection</strong></summary>
+
+<br/>
+
+<p align="center">
+  <img src="documentation/images/Image%202.png" alt="OfflineScribe : Model Selection" width="900"/>
+</p>
+
+<p align="center">
+  <sub>Choose between Tiny, Small, and Medium models based on speed and transcription quality.</sub>
+</p>
+
+</details>
+
+<details>
+<summary><strong>Transcription Progress</strong></summary>
+
+<br/>
+
+<p align="center">
+  <img src="documentation/images/Image%203.png" alt="OfflineScribe : Transcription Progress" width="900"/>
+</p>
+
+<p align="center">
+  <sub>Track the transcription pipeline while the audio is processed locally.</sub>
+</p>
+
+</details>
+
+<details>
+<summary><strong>Processing Status</strong></summary>
+
+<br/>
+
+<p align="center">
+  <img src="documentation/images/Image%205.png" alt="OfflineScribe: Processing Status" width="900"/>
+</p>
+
+<p align="center">
+  <sub>See the current processing stage from upload to transcription.</sub>
+</p>
+
+</details>
+
+<details>
+<summary><strong>Transcript & Export</strong></summary>
+
+<br/>
+
+<p align="center">
+  <img src="documentation/images/Image%204.png" alt="OfflineScribe : Transcript and Export" width="900"/>
+</p>
+
+<p align="center">
+  <sub>View timestamped transcripts and export them as SRT or TXT files.</sub>
+</p>
+
+</details>
+
+---
 
 ## What is OfflineScribe?
 
